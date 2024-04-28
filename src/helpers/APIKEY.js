@@ -1,1 +1,2 @@
-export const API_Key = "";
+export const API_Key = "654c3fb91cfe4d40b6f210030242804";
+export const BASE_URL = 'http://api.weatherapi.com/v1'

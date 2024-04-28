@@ -2,7 +2,7 @@ import Logo from "../assets/logo.svg";
 
 export default function Header() {
   return (
-    <header className="p-6 flex">
+    <header className="flex">
       <h1 className="text-lg inline-block uppercase font-bold content-end lg:text-2xl">
         sinoptik app
       </h1>
