@@ -1,12 +1,12 @@
-import Logo from '../assets/logo.svg'
+import Logo from "../assets/logo.svg";
 
 export default function Header() {
   return (
     <header className="p-6 flex">
-      <h1 className="inline-block text-2xl uppercase font-bold content-end">
-        weather app
+      <h1 className="text-lg inline-block uppercase font-bold content-end lg:text-2xl">
+        sinoptik app
       </h1>
-      <img className='w-16' src={Logo} alt="logo" />
+      <img className="w-12 lg:w-16" src={Logo} alt="logo" />
     </header>
   );
 }
