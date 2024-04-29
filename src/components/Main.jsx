@@ -4,17 +4,18 @@ import Search from "./Search";
 
 export default function Main() {
   const [value, setValue] = useState("");
+  const [items, setItems] = useState("");
 
-  const handleButton = () => {
+  const handleSearchButton = () => {
     console.log(value);
   };
 
   return (
-    <main className="grow flex flex-col gap-8">
+    <main className="grow flex flex-col gap-8 min-h-0">
       <Search
         value={value}
         setValue={setValue}
-        handleButton={handleButton}
+        handleSearchButton={handleSearchButton}
       ></Search>
       <Layout></Layout>
     </main>
