@@ -12,7 +12,7 @@ export function ItemsCard(props) {
       <div className="flex items-center gap-2">
         <img className="w-7 h-7 lg:w-12 lg:h-12" src={icon} alt="icon" />
         <div className="flex gap-1">
-          <h3 className="text-lg lg:text-4xl">{city}</h3>
+          <h3 className="text-lg lg:text-2xl">{city}</h3>
           <p className="text-sm">{temp}&#176; </p>
         </div>
       </div>
