@@ -1,7 +1,21 @@
-export default function ItemsPanel() {
+import { ItemsCard, ItemsList } from "./ItemsLayout";
+
+export default function ItemsPanel(props) {
+  const { items = [], ...prop } = props;
   return (
-    <div className="box-border overflow-y-auto p-2">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic nemo explicabo tempore nobis enim illum in porro quos consectetur dolorum! Nam perspiciatis id in aperiam fuga consequuntur accusantium suscipit facere eum! A consequuntur, quod magnam consectetur error rem harum cum?</p>
+    <div className="box-border overflow-y-auto">
+      <ItemsList>
+        {items.map((item) => {
+          return (
+            <ItemsCard
+              key={item?.location?.name}
+              city={item?.location?.name}
+              temp={item?.current?.temp_c}
+              icon={item?.current?.condition?.icon}
+            ></ItemsCard>
+          );
+        })}
+      </ItemsList>
     </div>
   );
 }

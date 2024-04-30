@@ -31,30 +31,20 @@ export default forwardRef(function Input(props, ref) {
     }
   };
 
-  const inputClasses = classNames(
-    "text-lg",
-    "border-solid",
-    "border-2",
-    "border-dark",
-    "rounded-md",
-    "p-4",
-    "outline-none",
-    "box-border",
-    "md:text-lg",
-    "lg:text-2xl",
-    className
-  );
   return (
-    <input
-      ref={ref}
-      className={inputClasses}
-      name={name}
-      value={value}
-      placeholder={placeholder}
-      type="text"
-      onChange={handleChangeValue}
-      onKeyUp={handleKeyUp}
-      {...prop}
-    />
+    <div className={classNames('flex', 'items-center', 'relative', className)}>
+      <input
+        ref={ref}
+        className="w-full h-full text-lg border-solid border-2 border-dark rounded-md py-4 pl-4 pr-16 outline-none box-border md:text-lg lg:text-2xl"
+        name={name}
+        value={value}
+        placeholder={placeholder}
+        type="text"
+        onChange={handleChangeValue}
+        onKeyUp={handleKeyUp}
+        {...prop}
+      />
+      <img className="opacity-70 w-8 absolute top-2/4 right-4 translate-y-[-50%] lg:w-12" src={iconSearch} alt="icon" />
+    </div>
   );
 });

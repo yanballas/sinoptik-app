@@ -7,17 +7,20 @@ export default function Button(props) {
     className = String,
     ...prop
   } = props;
-  const buttonClasses = classNames(
-    "shadow-md",
-    "p-4",
-    "rounded-lg",
-    "transition-colors",
-    "duration-300",
-    className
-  );
 
   return (
-    <button className={buttonClasses} onClick={handleButton} {...prop}>
+    <button
+      className={classNames(
+        "shadow-md",
+        "p-4",
+        "rounded-lg",
+        "transition-colors",
+        "duration-300",
+        className
+      )}
+      onClick={handleButton}
+      {...prop}
+    >
       {text}
     </button>
   );

@@ -48,7 +48,8 @@ export default function Search(props) {
   };
 
   const handleSearchButton = () => {
-    handleSearch();
+    if (searchValue.length) return handleSearch();
+    return inputSerchRef.current.focus();
   };
 
   return (
@@ -60,7 +61,7 @@ export default function Search(props) {
           value={searchValue}
           setValue={setSearchValue}
           name={"search"}
-          placeholder={'search city'}
+          placeholder={"search city"}
           storageKey={KEY_SEARCHSTORAGE}
           className={"h-full, lg:w-2/5"}
         ></Input>
