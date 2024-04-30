@@ -1,24 +1,20 @@
 import { useEffect, useState } from "react";
-import { useDebounce } from "./useDebounce";
 
+export const getLocalValue = (initivalValue, key) => {
+  const localValue = localStorage.getItem(key);
+  if (localValue) return JSON.parse(localValue);
+  return initivalValue;
+};
+export const saveLocalStorage = (element, key) => {
+  const jsonElements = JSON.stringify(element);
+  localStorage.setItem(key, jsonElements);
+};
 export const useLocalStorage = (initivalValue, key = String) => {
-  const getLocalValue = () => {
-    const localValue = localStorage.getItem(key);
-    if (localValue) return JSON.parse(localValue);
-    return initivalValue;
-  };
-
-  const saveLocalStorage = (elements) => {
-    const jsonElements = JSON.stringify(elements);
-    localStorage.setItem(key, jsonElements);
-  };
-
-  const [value, setValue] = useState(getLocalValue);
-  const db = useDebounce(value);
+  const [value, setValue] = useState(getLocalValue(initivalValue, key));
 
   useEffect(() => {
-    saveLocalStorage(db);
-  }, [db]);
+    saveLocalStorage(value, key);
+  }, [value]);
 
   return [value, setValue];
 };
