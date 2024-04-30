@@ -2,14 +2,10 @@ import Container from "./Container";
 import Button from "./Button";
 import Input from "./Input";
 import { API_Key, BASE_URL } from "../helpers/APIKEY";
-import { useEffect } from "react";
 
 export default function Search(props) {
   const { searchValue = String, setSearchValue, items = [], setItems, ...prop } = props;
 
-  const saveLocalStorage = (key, elements) => {
-    localStorage.setItem(key, elements);
-  };
 
   const sortItems = (elements) => {
     return elements.sort((a, b) => {
@@ -35,14 +31,6 @@ export default function Search(props) {
   const handleSearchButton = () => {
     searchItems(searchValue);
   };
-  
-  useEffect(() => {
-    saveLocalStorage("cities", JSON.stringify(items));
-  }, [items]);
-
-  useEffect(() => {
-    saveLocalStorage('city', JSON.stringify(searchValue))
-  }, [searchValue])
 
   return (
     <Container>

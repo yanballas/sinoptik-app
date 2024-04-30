@@ -1,15 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 import { INITIAL_STATE } from "../helpers/INITIAL_STATE";
 import Layout from "./Layout";
 import Search from "./Search";
 
 export default function Main() {
-  const [searchValue, setSearchValue] = useState(
-    JSON.parse(localStorage.getItem("city")) || ""
-  );
-  const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem("cities")) || INITIAL_STATE
-  );
+  const [searchValue, setSearchValue] = useLocalStorage("", 'city');
+  const [items, setItems] = useLocalStorage(INITIAL_STATE, "cities");
 
   useEffect(() => {
     console.log(items);
