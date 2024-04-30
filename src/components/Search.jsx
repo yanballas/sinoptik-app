@@ -1,11 +1,12 @@
+import { useLocalStorage } from "../hooks/useLocalStorage";
 import Container from "./Container";
 import Button from "./Button";
 import Input from "./Input";
 import { API_Key, BASE_URL } from "../helpers/APIKEY";
 
 export default function Search(props) {
-  const { searchValue = String, setSearchValue, items = [], setItems, ...prop } = props;
-
+  const { items = [], setItems, ...prop } = props;
+  const [searchValue, setSearchValue] = useLocalStorage("", "city");
 
   const sortItems = (elements) => {
     return elements.sort((a, b) => {

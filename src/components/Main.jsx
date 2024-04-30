@@ -5,7 +5,6 @@ import Layout from "./Layout";
 import Search from "./Search";
 
 export default function Main() {
-  const [searchValue, setSearchValue] = useLocalStorage("", 'city');
   const [items, setItems] = useLocalStorage(INITIAL_STATE, "cities");
 
   useEffect(() => {
@@ -15,8 +14,6 @@ export default function Main() {
   return (
     <main className="grow flex flex-col gap-8 min-h-0">
       <Search
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
         items={items}
         setItems={setItems}
       ></Search>
