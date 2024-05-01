@@ -1,4 +1,4 @@
-import iconClose from '../assets/iconClose.svg'
+import iconClose from "../assets/iconClose.svg";
 
 export function ItemsList(props) {
   const { children, ...prop } = props;
@@ -6,7 +6,14 @@ export function ItemsList(props) {
 }
 
 export function ItemsCard(props) {
-  const { city = String, temp = Number, icon = String, ...prop } = props;
+  const {
+    city = String,
+    temp = Number,
+    icon = String,
+    handleInfoItem = Function.prototype,
+    handleDeleteButton = Function.prototype,
+    ...prop
+  } = props;
   return (
     <li className="relative bg-primary-100 flex flex-col p-2 border-dark border-solid border-2 rounded-md">
       <div className="flex items-center gap-2">
@@ -16,8 +23,11 @@ export function ItemsCard(props) {
           <p className="text-sm">{temp}&#176; </p>
         </div>
       </div>
-      <button className='p-4 absolute top-2/4 right-2 translate-y-[-50%]'>
-        <img className='w-3 h-3 lg:w-4 lg:h-4' src={iconClose} alt="icon" />
+      <button
+        className="p-4 absolute z-10 top-2/4 right-2 translate-y-[-50%]"
+        onClick={() => handleDeleteButton(city)}
+      >
+        <img className="w-3 h-3 lg:w-4 lg:h-4" src={iconClose} alt="icon" />
       </button>
     </li>
   );

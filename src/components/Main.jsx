@@ -13,8 +13,8 @@ export default function Main() {
 
   return (
     <main className="grow flex flex-col gap-8 min-h-0">
-      <Search items={items} setItems={setItems}></Search>
-      <Layout items={items} setItems={setItems}></Layout>
+      <Search items={items} setItems={setItems} />
+      <Layout items={items} setItems={setItems} />
     </main>
   );
 }

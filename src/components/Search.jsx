@@ -1,5 +1,7 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
+import { useDebounce } from "../hooks/useDebounce";
 import { getLocalValue } from "../hooks/useLocalStorage";
+import { saveLocalStorage } from "../hooks/useLocalStorage";
 import { API_Key, BASE_URL } from "../helpers/APIKEY";
 import { KEY_SEARCHSTORAGE } from "../helpers/INITIAL_DATA";
 import Container from "./Container";
@@ -13,7 +15,12 @@ export default function Search(props) {
   );
   const inputSerchRef = useRef();
 
-  const sortItems = (elements) => {
+  const debounceSearchValue = useDebounce(searchValue, 500);
+  useEffect(() => {
+    saveLocalStorage(debounceSearchValue, KEY_SEARCHSTORAGE);
+  }, [debounceSearchValue]);
+
+  const sortItems = useCallback((elements) => {
     return elements.sort((a, b) => {
       if (a?.location?.name.toLowerCase() < b?.location?.name.toLowerCase())
         return -1;
@@ -21,7 +28,14 @@ export default function Search(props) {
         return 1;
       return 0;
     });
-  };
+  }, []);
+
+  const checkItem = useCallback((elements, elem) => {
+    const isFind = (item) => {
+      return item?.location?.name === elem?.location?.name;
+    };
+    return elements.find(isFind);
+  }, []);
 
   const searchItems = async (value = "") => {
     const city = value.trim().toLowerCase();
@@ -30,25 +44,27 @@ export default function Search(props) {
         `${BASE_URL}/current.json?key=${API_Key}&q=${city}&aqi=no`
       ).then((responose) => {
         if (responose.ok) {
-          responose
-            .json()
-            .then((data) => setItems((state) => sortItems([...state, data])));
+          responose.json().then((data) => {
+            const findItem = checkItem(items, data);
+            if (!findItem) {
+              setItems((state) => sortItems([...state, data]));
+            }
+            return items;
+          });
         }
       });
-      return;
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const handleSearch = () => {
     searchItems(searchValue);
     setSearchValue("");
-    inputSerchRef.current.focus();
   };
 
   const handleSearchButton = () => {
-    if (searchValue.length) return handleSearch();
+    if (searchValue.length > 0) return handleSearch();
     return inputSerchRef.current.focus();
   };
 
@@ -60,16 +76,15 @@ export default function Search(props) {
           handleInput={handleSearch}
           value={searchValue}
           setValue={setSearchValue}
-          name={"search"}
-          placeholder={"search city"}
-          storageKey={KEY_SEARCHSTORAGE}
-          className={"h-full, lg:w-2/5"}
-        ></Input>
+          name="search"
+          placeholder="search city"
+          className="h-full, lg:w-2/5"
+        />
         <Button
-          className={"text-md bg-primary-200 hover:text-light lg:text-lg"}
-          text={"get weather information"}
+          className="text-md bg-primary-200 active:text-light lg:text-lg"
+          text="get weather information"
           handleButton={handleSearchButton}
-        ></Button>
+        />
       </div>
     </Container>
   );
