@@ -1,7 +1,32 @@
-export default function InfoPanel() {
+import { useCallback, useMemo } from "react";
+
+export default function InfoPanel(props) {
+  const { items = [], itemInfo = String, ...prop } = props;
+
+  const findItem = useCallback((elements, currentInfo) => {
+    const elem = elements.find(
+      (element) => element?.location?.name === currentInfo
+    );
+    return elem;
+  }, []);
+
+  const curentItem = useMemo(() => {
+    return findItem(items, itemInfo);
+  }, [items, itemInfo, findItem]);
+
   return (
     <div className="box-border overflow-y-auto">
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta omnis nisi saepe asperiores impedit rerum voluptates aliquid, iste, numquam nihil autem adipisci laborum assumenda aliquam consequuntur dolorum eos molestias harum deserunt officia vel laboriosam! Earum corporis magnam id impedit cupiditate?</p>
+      <InfoCard item={curentItem} />
+    </div>
+  );
+}
+
+export function InfoCard(props) {
+  const { item, ...prop } = props;
+  console.log(item);
+  return (
+    <div>
+      <p />
     </div>
   );
 }

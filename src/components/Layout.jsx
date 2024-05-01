@@ -21,7 +21,7 @@ export default function Layout(props) {
         placeholder="filter city"
         className="w-full lg:w-[calc(50%-8px)]"
       />
-      <div className="min-h-0 text-xl grow grid grid-cols-1 grid-rows-[repeat(2, 1fr)] gap-4 lg:texl-xl lg:grid-cols-2 lg:grid-rows-1">
+      <div className="min-h-0 text-xl grow grid grid-cols-1 grid-rows-[repeat(2,1fr)] gap-4 lg:texl-xl lg:grid-cols-2 lg:grid-rows-1">
         <ItemsPanel
           items={items}
           setItems={setItems}
@@ -29,7 +29,7 @@ export default function Layout(props) {
           setFilterValue={setFilterValue}
           setItemInfo={setItemInfo}
         />
-        <InfoPanel itemInfo={itemInfo} />
+        <InfoPanel items={items} itemInfo={itemInfo} />
       </div>
     </Container>
   );
