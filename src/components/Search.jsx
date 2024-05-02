@@ -2,7 +2,7 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import { useDebounce } from "../hooks/useDebounce";
 import { getLocalValue } from "../hooks/useLocalStorage";
 import { saveLocalStorage } from "../hooks/useLocalStorage";
-import { API_Key, BASE_URL } from "../helpers/APIKEY";
+import { BASE_URL } from "../helpers/APIURL";
 import { KEY_SEARCHSTORAGE } from "../helpers/INITIAL_DATA";
 import Container from "./Container";
 import Button from "./Button";
@@ -14,6 +14,7 @@ export default function Search(props) {
     getLocalValue("", KEY_SEARCHSTORAGE)
   );
   const inputSerchRef = useRef();
+  const API_KEY = import.meta.env.VITE_API_KEY;
 
   const debounceSearchValue = useDebounce(searchValue, 500);
   useEffect(() => {
@@ -41,7 +42,7 @@ export default function Search(props) {
     const city = value.trim().toLowerCase();
     try {
       await fetch(
-        `${BASE_URL}/current.json?key=${API_Key}&q=${city}&aqi=no`
+        `${BASE_URL}/current.json?key=${API_KEY}&q=${city}&aqi=no`
       ).then((responose) => {
         if (responose.ok) {
           responose.json().then((data) => {

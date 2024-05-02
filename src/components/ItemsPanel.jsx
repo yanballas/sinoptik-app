@@ -30,7 +30,7 @@ export default function ItemsPanel(props) {
   };
 
   return (
-    <div className="box-border overflow-y-auto">
+    <div className="overflow-y-auto">
       <ItemsList>
         {filteredItems.map((item) => {
           return (

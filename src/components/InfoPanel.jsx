@@ -15,7 +15,7 @@ export default function InfoPanel(props) {
   }, [items, itemInfo, findItem]);
 
   return (
-    <div className="box-border overflow-y-auto">
+    <div className="overflow-y-auto">
       <InfoCard item={curentItem} />
     </div>
   );
@@ -26,7 +26,7 @@ export function InfoCard(props) {
   console.log(item);
   return (
     <div>
-      <p />
+      <p>{item?.location?.name}</p>
     </div>
   );
 }
