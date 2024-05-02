@@ -1,4 +1,5 @@
 import { useCallback, useMemo } from "react";
+import Preloader from "./Preloader";
 
 export default function InfoPanel(props) {
   const { items = [], itemInfo = String, ...prop } = props;
@@ -23,6 +24,7 @@ export default function InfoPanel(props) {
 
 export function InfoCard(props) {
   const { item = "", ...prop } = props;
+
   return (
     <div>
       <div className="flex flex-col gap-3">

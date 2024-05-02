@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { ItemsCard, ItemsList } from "./ItemsLayout";
+import ActionHeadling from "./ActionHeadling";
 
 export default function ItemsPanel(props) {
   const {
@@ -23,7 +24,7 @@ export default function ItemsPanel(props) {
         return item?.location?.name.toLowerCase() !== city.toLowerCase();
       });
     });
-    if (city.toLowerCase() === itemInfo.toLowerCase()) setItemInfo('')
+    if (city.toLowerCase() === itemInfo.toLowerCase()) setItemInfo("");
     setFilterValue("");
   };
 
@@ -32,21 +33,27 @@ export default function ItemsPanel(props) {
   };
 
   return (
-    <div className="overflow-y-auto">
-      <ItemsList>
-        {filteredItems.map((item) => {
-          return (
-            <ItemsCard
-              key={item?.location?.name}
-              city={item?.location?.name}
-              temp={item?.current?.temp_c}
-              icon={item?.current?.condition?.icon}
-              handleDeleteButton={handleDeleteButton}
-              handleInfoItem={handleInfoItem}
-            />
-          );
-        })}
-      </ItemsList>
+    <div className="overflow-y-auto grow">
+      {items.length > 0 ? (
+        <ItemsList>
+          {filteredItems.map((item) => {
+            return (
+              <ItemsCard
+                key={item?.location?.name}
+                city={item?.location?.name}
+                temp={item?.current?.temp_c}
+                icon={item?.current?.condition?.icon}
+                handleDeleteButton={handleDeleteButton}
+                handleInfoItem={handleInfoItem}
+              />
+            );
+          })}
+        </ItemsList>
+      ) : (
+        <>
+          <ActionHeadling headling="headling" />
+        </>
+      )}
     </div>
   );
 }
