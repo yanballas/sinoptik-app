@@ -5,8 +5,8 @@ import Main from "./components/Main";
 export default function App() {
   return (
     <Wrapper>
-      <Header></Header>
-      <Main></Main>
+      <Header />
+      <Main />
     </Wrapper>
   );
 }
