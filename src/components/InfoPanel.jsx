@@ -35,7 +35,7 @@ export function InfoCard(props) {
                 alt="icon"
               />
               <p className="absolute bottom-[-15%] right-[-15%] text-lg font-bold">
-                {item?.current?.temp_c}
+                {item?.current?.temp_c}&#176;
               </p>
             </div>
             <h3 className="text:lg lg:text-2xl">
