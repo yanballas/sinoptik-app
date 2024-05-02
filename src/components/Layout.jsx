@@ -1,14 +1,17 @@
 import { useState } from "react";
+import { useLocalStorage} from '../hooks/useLocalStorage'
+import { useDebounce } from "../hooks/useDebounce";
 import Container from "./Container";
 import InfoPanel from "./InfoPanel";
 import Input from "./Input";
 import ItemsPanel from "./ItemsPanel";
-import { useDebounce } from "../hooks/useDebounce";
+import { KEY_INFOSTORAGE } from "../helpers/INITIAL_DATA";
+
 
 export default function Layout(props) {
   const { items = [], setItems, ...prop } = props;
   const [filterValue = "", setFilterValue] = useState("");
-  const [itemInfo, setItemInfo] = useState("");
+  const [itemInfo, setItemInfo] = useLocalStorage('', KEY_INFOSTORAGE);
 
   const debounceFilterValue = useDebounce(filterValue, 800);
 
@@ -27,6 +30,7 @@ export default function Layout(props) {
           setItems={setItems}
           filterValue={debounceFilterValue}
           setFilterValue={setFilterValue}
+          itemInfo={itemInfo}
           setItemInfo={setItemInfo}
         />
         <InfoPanel items={items} itemInfo={itemInfo} />

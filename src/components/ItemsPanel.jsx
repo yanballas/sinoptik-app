@@ -7,6 +7,7 @@ export default function ItemsPanel(props) {
     setItems,
     filterValue = String,
     setFilterValue,
+    itemInfo = String,
     setItemInfo,
     ...prop
   } = props;
@@ -22,6 +23,7 @@ export default function ItemsPanel(props) {
         return item?.location?.name.toLowerCase() !== city.toLowerCase();
       });
     });
+    if (city.toLowerCase() === itemInfo.toLowerCase()) setItemInfo('')
     setFilterValue("");
   };
 
