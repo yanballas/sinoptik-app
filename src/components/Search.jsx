@@ -9,7 +9,7 @@ import Button from "./Button";
 import { Input } from "./Input";
 
 export default function Search(props) {
-  const { items = [], setItems, setLoading, ...prop } = props;
+  const { items = [], setItems, setLoading, setError, ...prop } = props;
   const [searchValue, setSearchValue] = useState(
     getLocalValue("", KEY_SEARCHSTORAGE)
   );
@@ -54,6 +54,8 @@ export default function Search(props) {
             }
             return items;
           });
+        } else {
+          setError(true);
         }
       });
     } catch (error) {

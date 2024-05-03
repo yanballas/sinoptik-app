@@ -1,8 +1,12 @@
-# React + Vite
+# Приложение для просмотра погоды SINOPKIK
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Функционал и задачи
 
-Currently, two official plugins are available:
+Запрос к серверу по REST API для получения актуальной информации о погоде в конкретном городе. Обработка ошибки. Вывод более подробной информации о погоде при необходимости. Сохранения состояния поиска, списка, подробной информации при перезагрузке страницы. Задержка ввода при поиске. Адаптивный дизайн.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Стек
+
+React
+Tailwind
+Eslint + Prettier
+Vite
