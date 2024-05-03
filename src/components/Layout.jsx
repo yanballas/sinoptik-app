@@ -3,7 +3,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useDebounce } from "../hooks/useDebounce";
 import Container from "./Container";
 import InfoPanel from "./InfoPanel";
-import Input from "./Input";
+import { Input } from "./Input";
 import ItemsPanel from "./ItemsPanel";
 import { KEY_INFOSTORAGE } from "../helpers/INITIAL_DATA";
 

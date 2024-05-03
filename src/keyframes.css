@@ -8,6 +8,30 @@
   }
 }
 
-.animate {
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+}
+
+.animate__preloader {
   animation: preloader 3s ease 0s infinite normal none;
 }

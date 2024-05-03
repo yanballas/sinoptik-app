@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import iconSearch from "../assets/iconSearch.svg";
 import classNames from "classnames";
 
-export default forwardRef((props, ref) => {
+export const Input = forwardRef((props, ref) => {
   const {
     handleInput = Function.prototype,
     value = String,

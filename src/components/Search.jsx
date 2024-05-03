@@ -6,7 +6,7 @@ import { BASE_URL } from "../helpers/APIURL";
 import { KEY_SEARCHSTORAGE } from "../helpers/INITIAL_DATA";
 import Container from "./Container";
 import Button from "./Button";
-import Input from "./Input";
+import { Input } from "./Input";
 
 export default function Search(props) {
   const { items = [], setItems, setLoading, ...prop } = props;
