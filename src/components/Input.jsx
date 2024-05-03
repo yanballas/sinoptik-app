@@ -26,7 +26,7 @@ export const Input = forwardRef((props, ref) => {
     <div className={classNames("flex", "items-center", "relative", className)}>
       <input
         ref={ref}
-        className="w-full h-full text-lg border-solid border-2 border-dark rounded-md py-4 pl-4 pr-16 outline-none transition-all focus:border-primary-300 focus:bg-primary-100 box-border md:text-lg lg:text-2xl"
+        className="w-full h-full bg-light-100 text-lg border-solid border-2 border-dark rounded-md py-4 pl-4 pr-16 outline-none transition-all focus:border-primary-300 focus:bg-light-200 box-border md:text-lg lg:text-2xl"
         name={name}
         value={value}
         placeholder={placeholder}

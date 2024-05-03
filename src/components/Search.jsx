@@ -86,7 +86,7 @@ export default function Search(props) {
           className="h-full, lg:w-2/5"
         />
         <Button
-          className="text-md bg-primary-200 active:text-light lg:text-lg"
+          className="text-md bg-primary-200 active:text-light-100 lg:text-lg"
           text="get weather information"
           handleButton={handleSearchButton}
         />
