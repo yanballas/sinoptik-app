@@ -8,7 +8,7 @@ import ItemsPanel from "./ItemsPanel";
 import { KEY_INFOSTORAGE } from "../helpers/INITIAL_DATA";
 
 export default function Layout(props) {
-  const { items = [], setItems, ...prop } = props;
+  const { items = [], setItems, loading = false, ...prop } = props;
   const [filterValue = "", setFilterValue] = useState("");
   const [itemInfo, setItemInfo] = useLocalStorage("", KEY_INFOSTORAGE);
 
@@ -17,7 +17,7 @@ export default function Layout(props) {
   return (
     <Container className="flex grow flex-col gap-4 min-h-0">
       <div className="min-h-0 text-xl grow grid grid-cols-1 grid-rows-[repeat(2,1fr)] gap-4 lg:texl-xl lg:grid-cols-2 lg:grid-rows-1">
-        <div className="min-h-0 flex flex-col gap-4">
+        <div className="overflow-y-auto min-h-0 flex flex-col gap-4">
           <Input
             value={filterValue}
             name="filter"
@@ -28,6 +28,7 @@ export default function Layout(props) {
           <ItemsPanel
             items={items}
             setItems={setItems}
+            loading={loading}
             filterValue={debounceFilterValue}
             setFilterValue={setFilterValue}
             itemInfo={itemInfo}

@@ -1,11 +1,13 @@
 import { useMemo } from "react";
 import { ItemsCard, ItemsList } from "./ItemsLayout";
 import ActionHeadling from "./ActionHeadling";
+import Preloader from "./Preloader";
 
 export default function ItemsPanel(props) {
   const {
     items = [],
     setItems,
+    loading = false,
     filterValue = String,
     setFilterValue,
     itemInfo = String,
@@ -32,28 +34,29 @@ export default function ItemsPanel(props) {
     setItemInfo(city);
   };
 
+  if (items.length > 0 && !loading) {
+    return (
+      <ItemsList>
+        {filteredItems.map((item) => {
+          return (
+            <ItemsCard
+              key={item?.location?.name}
+              city={item?.location?.name}
+              temp={item?.current?.temp_c}
+              icon={item?.current?.condition?.icon}
+              handleDeleteButton={handleDeleteButton}
+              handleInfoItem={handleInfoItem}
+            />
+          );
+        })}
+      </ItemsList>
+    );
+  }
+  if (loading) {
+    return <Preloader />;
+  }
+
   return (
-    <div className="overflow-y-auto grow">
-      {items.length > 0 ? (
-        <ItemsList>
-          {filteredItems.map((item) => {
-            return (
-              <ItemsCard
-                key={item?.location?.name}
-                city={item?.location?.name}
-                temp={item?.current?.temp_c}
-                icon={item?.current?.condition?.icon}
-                handleDeleteButton={handleDeleteButton}
-                handleInfoItem={handleInfoItem}
-              />
-            );
-          })}
-        </ItemsList>
-      ) : (
-        <>
-          <ActionHeadling headling="headling" />
-        </>
-      )}
-    </div>
+    <ActionHeadling headling="Use the search to get information about the weather" />
   );
 }

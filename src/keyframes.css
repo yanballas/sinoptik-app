@@ -1,0 +1,13 @@
+@keyframes preloader {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate {
+  animation: preloader 3s ease 0s infinite normal none;
+}

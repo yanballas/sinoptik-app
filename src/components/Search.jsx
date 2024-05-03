@@ -9,7 +9,7 @@ import Button from "./Button";
 import Input from "./Input";
 
 export default function Search(props) {
-  const { items = [], setItems, ...prop } = props;
+  const { items = [], setItems, setLoading, ...prop } = props;
   const [searchValue, setSearchValue] = useState(
     getLocalValue("", KEY_SEARCHSTORAGE)
   );
@@ -40,15 +40,17 @@ export default function Search(props) {
 
   const searchItems = async (value = "") => {
     const city = value.trim().toLowerCase();
+    setLoading(true);
     try {
       await fetch(
         `${BASE_URL}/current.json?key=${API_KEY}&q=${city}&aqi=no`
       ).then((responose) => {
         if (responose.ok) {
           responose.json().then((data) => {
+            setLoading(false);
             const findItem = checkItem(items, data);
             if (!findItem) {
-              setItems((state) => sortItems([...state, data]));
+              return setItems((state) => sortItems([...state, data]));
             }
             return items;
           });

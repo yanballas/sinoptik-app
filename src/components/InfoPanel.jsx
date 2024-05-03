@@ -1,4 +1,5 @@
 import { useCallback, useMemo } from "react";
+import ActionHeadling from "../components/ActionHeadling";
 import Preloader from "./Preloader";
 
 export default function InfoPanel(props) {
@@ -16,8 +17,12 @@ export default function InfoPanel(props) {
   }, [items, itemInfo, findItem]);
 
   return (
-    <div className="overflow-y-auto lg:flex lg:flex-col lg:items-center lg:justify-center">
-      <InfoCard item={curentItem} />
+    <div className="overflow-y-auto min-h-0 lg:flex lg:flex-col lg:items-center lg:justify-center">
+      {itemInfo.length > 0 ? (
+        <InfoCard item={curentItem} />
+      ) : (
+        <ActionHeadling headling="Select a city from the list for more information" />
+      )}
     </div>
   );
 }
